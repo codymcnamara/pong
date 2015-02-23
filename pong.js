@@ -28,6 +28,7 @@ var ball = new Ball(450, 300);
 
 var update = function() {
   ball.update(player.paddle, computer.paddle);
+  computer.update(ball);
   player.update();
 };
 
@@ -57,12 +58,6 @@ Paddle.prototype.render = function() {
 
 function Player() {
    this.paddle = new Paddle(870, 250, 20, 100);
-   key('up', function(){
-     this.paddle.move(-10)
-   }.bind(this));
-   key('down', function(){
-     this.paddle.move(10)
-   }.bind(this));
 }
 
 function Computer() {
@@ -80,7 +75,7 @@ Computer.prototype.render = function() {
 function Ball(x, y) {
   this.x = x;
   this.y = y;
-  this.x_speed = 5;
+  this.x_speed = 10;
   this.y_speed = 0;
   this.radius = 15;
 }
@@ -111,7 +106,7 @@ Ball.prototype.update = function(paddle1, paddle2) {
 
   if(this.x < 0 || this.x > 900) { // a point was scored
     this.y_speed = 0;
-    this.x_speed = 5;
+    this.x_speed = 10;
     this.x = 450;
     this.y = 300;
   }
@@ -120,33 +115,18 @@ Ball.prototype.update = function(paddle1, paddle2) {
     // hit player1's paddle
     var relativeIntersectY = (paddle1.y + (paddle1.height/2)) - this.y;
     var normalizedRelativeIntersectionY = (relativeIntersectY/(paddle1.height/2));
-    var bounceAngle = normalizedRelativeIntersectionY * 5*Math.PI/12;
-    this.x_speed = -5*Math.cos(bounceAngle);
-    this.y_speed = 5*-Math.sin(bounceAngle);
+    var bounceAngle = normalizedRelativeIntersectionY * 3*Math.PI/12;
+    this.x_speed = -10*Math.cos(bounceAngle);
+    this.y_speed = 10*-Math.sin(bounceAngle);
 
   } else if (left_x < (paddle2.x + paddle2.width) && right_x > paddle2.x && bottom_y > paddle2.y && top_y < (paddle2.y + paddle2.height)){
     // hit player2's paddle
-    var relativeIntersectY = (paddle1.y + (paddle1.height/2)) - this.y;
-    var normalizedRelativeIntersectionY = (relativeIntersectY/(paddle1.height/2));
-    var bounceAngle = normalizedRelativeIntersectionY * 5*Math.PI/12;
-    this.x_speed = 5*Math.cos(bounceAngle);
-    this.y_speed = 5*-Math.sin(bounceAngle);
+    var relativeIntersectY = (paddle2.y + (paddle2.height/2)) - this.y;
+    var normalizedRelativeIntersectionY = (relativeIntersectY/(paddle2.height/2));
+    var bounceAngle = normalizedRelativeIntersectionY * 3*Math.PI/12;
+    this.x_speed = 10*Math.cos(bounceAngle);
+    this.y_speed = 10*-Math.sin(bounceAngle);
   }
-};
-
-
-
-Player.prototype.update = function() {
-  // for(var key in keysDown) {
-  //   var value = Number(key);
-  //   if(value == 37) { // left arrow
-  //     this.paddle.move(-4, 0);
-  //   } else if (value == 39) { // right arrow
-  //     this.paddle.move(4, 0);
-  //   } else {
-  //     this.paddle.move(0, 0);
-  //   }
-  // }
 };
 
 Paddle.prototype.move = function(y) {
@@ -158,5 +138,32 @@ Paddle.prototype.move = function(y) {
     this.y = 600 - this.height;
     // this.x_speed = 0;
   }
-  console.log(y)
 }
+
+Player.prototype.update = function(){
+  for(var i = 0; i < key.getPressedKeyCodes(); i++){
+    if(key.getPressedKeyCodes()[i] === 38){
+      this.paddle.move(-5);
+    } else if (key.getPressedKeyCodes()[i] === 40){
+      this.paddle.move(5);
+    }
+  }
+}
+
+Computer.prototype.update = function(ball) {
+  var y_pos = ball.y;
+
+  var diff = -((this.paddle.y + (this.paddle.height / 2)) - y_pos);
+
+  if(diff < -4) { // max speed up
+    diff = -5;
+  } else if(diff > 4) { // max speed down
+    diff = 5;
+  }
+  this.paddle.move(diff);
+  if(this.paddle.y < 0) {
+    this.paddle.y = 0;
+  } else if (this.paddle.y + this.paddle.height > 600) {
+    this.paddle.y = 600 - this.paddle.height;
+  }
+};
