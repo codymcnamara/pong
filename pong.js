@@ -22,14 +22,14 @@ var step = function() {
   animate(step);
 };
 
-var update = function() {
-  ball.update(player.paddle, computer.paddle);
-};
-
-
 var player = new Player();
 var computer = new Computer();
 var ball = new Ball(450, 300);
+
+var update = function() {
+  ball.update(player.paddle, computer.paddle);
+  player.update();
+};
 
 var render = function() {
   context.fillStyle = "#000000";
@@ -57,6 +57,12 @@ Paddle.prototype.render = function() {
 
 function Player() {
    this.paddle = new Paddle(870, 250, 20, 100);
+   key('up', function(){
+     this.paddle.move(-10)
+   }.bind(this));
+   key('down', function(){
+     this.paddle.move(10)
+   }.bind(this));
 }
 
 function Computer() {
@@ -111,9 +117,46 @@ Ball.prototype.update = function(paddle1, paddle2) {
   }
 
   if(left_x < (paddle1.x + paddle1.width) && right_x > paddle1.x && bottom_y > paddle1.y && top_y < (paddle1.y + paddle1.height)){
-    this.x_speed = -4;
-    // hit the player's paddle
+    // hit player1's paddle
+    var relativeIntersectY = (paddle1.y + (paddle1.height/2)) - this.y;
+    var normalizedRelativeIntersectionY = (relativeIntersectY/(paddle1.height/2));
+    var bounceAngle = normalizedRelativeIntersectionY * 5*Math.PI/12;
+    this.x_speed = -5*Math.cos(bounceAngle);
+    this.y_speed = 5*-Math.sin(bounceAngle);
+
   } else if (left_x < (paddle2.x + paddle2.width) && right_x > paddle2.x && bottom_y > paddle2.y && top_y < (paddle2.y + paddle2.height)){
-    this.x_speed = 4
+    // hit player2's paddle
+    var relativeIntersectY = (paddle1.y + (paddle1.height/2)) - this.y;
+    var normalizedRelativeIntersectionY = (relativeIntersectY/(paddle1.height/2));
+    var bounceAngle = normalizedRelativeIntersectionY * 5*Math.PI/12;
+    this.x_speed = 5*Math.cos(bounceAngle);
+    this.y_speed = 5*-Math.sin(bounceAngle);
   }
 };
+
+
+
+Player.prototype.update = function() {
+  // for(var key in keysDown) {
+  //   var value = Number(key);
+  //   if(value == 37) { // left arrow
+  //     this.paddle.move(-4, 0);
+  //   } else if (value == 39) { // right arrow
+  //     this.paddle.move(4, 0);
+  //   } else {
+  //     this.paddle.move(0, 0);
+  //   }
+  // }
+};
+
+Paddle.prototype.move = function(y) {
+  this.y += y;
+  if(this.y < 0) { //all the way to top
+    this.y = 0;
+    // this.x_speed = 0;
+  } else if (this.y + this.height > 600) { // all the way to the bottom
+    this.y = 600 - this.height;
+    // this.x_speed = 0;
+  }
+  console.log(y)
+}
