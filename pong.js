@@ -110,10 +110,10 @@ Ball.prototype.update = function(paddle1, paddle2) {
     this.y = 300;
   }
 
-  if(left_x > 450) {
-    if(left_x < (paddle1.x + paddle1.width) && right_x > paddle1.x && bottom_y > paddle1.y && top_y < (paddle1.y + paddle1.height)){
-      this.x_speed = -3;
-      // hit the player's paddle
-    }
+  if(left_x < (paddle1.x + paddle1.width) && right_x > paddle1.x && bottom_y > paddle1.y && top_y < (paddle1.y + paddle1.height)){
+    this.x_speed = -4;
+    // hit the player's paddle
+  } else if (left_x < (paddle2.x + paddle2.width) && right_x > paddle2.x && bottom_y > paddle2.y && top_y < (paddle2.y + paddle2.height)){
+    this.x_speed = 4
   }
 };
