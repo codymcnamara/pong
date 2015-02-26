@@ -3,11 +3,27 @@
 <html>
   <head>
     <title>Pong</title>
-    <script src="keymaster.js"></script>
-    <script src="pong.js"></script>
     <link rel="stylesheet" type="text/css" href="pong.css">
   </head>
   <body>
-
+    <canvas></canvas>
+    <script src="keymaster.js"></script>
+    <script src="game.js"></script>
+    <script src="ball.js"></script>
+    <script src="player.js"></script>
+    <script src="computer.js"></script>
+    <script src="paddle.js"></script>
+    <script type="application/javascript">
+    (function(){
+      var canvas = document.getElementsByTagName('canvas')[0];
+      var width = 900;
+      var height = 600;
+      canvas.width = width;
+      canvas.height = height;
+      var context = canvas.getContext('2d');
+      var game = new Pong.Game(context, width, height);
+      game.start();
+    })();
+  </script>
   </body>
 </html>
