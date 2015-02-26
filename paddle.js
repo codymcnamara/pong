@@ -16,7 +16,7 @@
   };
 
   Paddle.prototype.render = function() {
-    this.context.fillStyle = "#0000FF";
+    this.context.fillStyle = "#FFF";
     this.context.fillRect(this.x, this.y, this.width, this.height);
   };
 

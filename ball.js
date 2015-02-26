@@ -3,13 +3,14 @@
     window.Pong = {}
   }
 
-  var Ball = Pong.Ball = function(x, y, context) {
+  var Ball = Pong.Ball = function(x, y, context, game) {
     this.context = context;
     this.x = x;
     this.y = y;
     this.x_speed = 10;
     this.y_speed = 0;
     this.radius = 15;
+    this.game = game;
   };
 
   Ball.prototype.render = function() {
@@ -37,8 +38,10 @@
     }
 
     if(this.x < 0 || this.x > 900) { // a point was scored
-      this.y_speed = 0;
-      this.x_speed = 10;
+      this.x < 0 ? this.game.leftScore += 1 : this.game.rightScore += 1;
+      console.log(this.game.rightScore)
+      this.y_speed = -this.y_speed;
+      this.x_speed = -this.x_speed;
       this.x = 450;
       this.y = 300;
     }

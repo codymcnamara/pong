@@ -10,7 +10,9 @@
     this.context = context;
     this.player = new Pong.Player(context);
     this.computer = new Pong.Computer(context);
-    this.ball = new Pong.Ball(450, 300, context);
+    this.ball = new Pong.Ball(450, 300, context, this);
+    this.rightScore = 0;
+    this.leftScore = 0;
   };
 
   var animate = window.requestAnimationFrame ||
@@ -35,9 +37,28 @@
     this.player.update();
   };
 
+  Game.prototype.dottedLine = function(){
+    this.context.beginPath();
+      this.context.setLineDash([5, 15]);
+      this.context.moveTo(450, 0);
+      this.context.lineTo(450, 600);
+    this.context.closePath();
+    this.context.strokeStyle = '#fff';
+    this.context.stroke();
+  };
+
+  Game.prototype.score = function(){
+    this.context.font = '90px Audiowide';
+    this.context.fillStyle = "#fff"
+    this.context.fillText(this.rightScore, 320, 90);
+    this.context.fillText(this.leftScore, 490, 90);
+  }
+
   Game.prototype.render = function() {
     this.context.fillStyle = "#000000";
     this.context.fillRect(0, 0, this.width, this.height);
+    this.dottedLine();
+    this.score();
     this.player.render();
     this.computer.render();
     this.ball.render();
