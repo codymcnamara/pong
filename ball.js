@@ -62,4 +62,11 @@
       this.y_speed = 10*-Math.sin(bounceAngle);
     }
   };
+
+  Ball.prototype.reset = function (){
+    this.x = 450
+    this.y = 300
+    this.x_speed = 10;
+    this.y_speed = 0;
+  }
 })();

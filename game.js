@@ -22,7 +22,7 @@
 
 
   Game.prototype.start = function(){
-    animate(this.step.bind(this));
+    this.requestId = animate(this.step.bind(this));
   };
 
   Game.prototype.step = function() {
@@ -47,7 +47,7 @@
     $('.game-over').html(message).css("color", color)
     $('.retry').html("New Game?")
 
-    $('retry').on('click', this.reset.bind(this))
+    $('.retry').on('click', this.reset.bind(this))
   };
 
   Game.prototype.reset = function () {
@@ -56,8 +56,9 @@
     this.leftScore = 0;
     this.player.reset();
     this.computer.reset();
-
-    $('end-info').html('')
+    $('.end-info').html('');
+    window.cancelAnimationFrame(this.requestId);
+    this.start();
   }
 
   Game.prototype.update = function() {
