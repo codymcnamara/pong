@@ -18,6 +18,12 @@
     <script src="paddle.js"></script>
     <script type="application/javascript">
     (function(){
+      window.addEventListener("keydown", function(e) {
+        // space and arrow keys
+        if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+            e.preventDefault();
+        }
+      }, false);
       var canvas = document.getElementsByTagName('canvas')[0];
       var width = 900;
       var height = 600;
