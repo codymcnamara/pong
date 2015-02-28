@@ -29,4 +29,8 @@
     }
   };
 
+  Paddle.prototype.reset = function (x, y) {
+
+  };
+
 })();

@@ -38,16 +38,27 @@
   Game.prototype.renderGameOver = function () {
     if (this.leftScore === 10) {
       var message = "Sorry, you lose"
+      var color = "red"
     } else if (this.rightScore === 10){
       var message = "You Win!"
+      var color = "green"
     }
 
-    $('.game-over').html(message)
-    //
-    // this.context.font = '120px Audiowide';
-    // this.context.fillStyle = "#fff"
-    // this.context.fillText(message, 250, 250);
+    $('.game-over').html(message).css("color", color)
+    $('.retry').html("New Game?")
+
+    $('retry').on('click', this.reset.bind(this))
   };
+
+  Game.prototype.reset = function () {
+    this.context.clearRect (0, 0, this.width, this.height);
+    this.rightScore = 0;
+    this.leftScore = 0;
+    this.player.reset();
+    this.computer.reset();
+
+    $('end-info').html('')
+  }
 
   Game.prototype.update = function() {
     this.ball.update(this.player.paddle, this.computer.paddle);

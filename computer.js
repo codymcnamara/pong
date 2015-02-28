@@ -30,4 +30,8 @@
     }
   };
 
+  Computer.prototype.reset = function(){
+    this.paddle.reset(10, 250);
+  };
+
 })();

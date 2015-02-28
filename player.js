@@ -22,4 +22,8 @@
     }
   };
 
+  Player.prototype.reset = function(){
+    this.paddle.reset(870, 250);
+  };
+
 })();

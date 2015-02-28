@@ -14,10 +14,20 @@ canvas{
   position: relative;
 }
 
-.game-over{
-  margin-top: -456px;
+
+.end-info{
   z-index: 10;
   text-align: center;
   position: relative;
+
+}
+
+.game-over{
+  margin-top: -456px;
   font-size: 90px;
+}
+
+.retry{
+  margin-top: 102px;
+  font-size: 60px;
 }
