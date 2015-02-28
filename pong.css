@@ -12,6 +12,7 @@ canvas{
   margin-right: auto;
   display: block;
   position: relative;
+  margin-bottom: 40px; 
 }
 
 .header{

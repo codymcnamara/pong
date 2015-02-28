@@ -38,7 +38,7 @@
     }
 
     if(this.x < 0 || this.x > 900) { // a point was scored
-      // document.getElementById('point-ding').play();
+      document.getElementById('point-ding').play();
       this.x < 0 ? this.game.rightScore += 1 : this.game.leftScore += 1;
       this.y_speed = -this.y_speed;
       this.x_speed = -this.x_speed;
@@ -48,7 +48,7 @@
 
     if(left_x < (paddle1.x + paddle1.width) && right_x > paddle1.x && bottom_y > paddle1.y && top_y < (paddle1.y + paddle1.height)){
       // hit player1's paddle
-      document.getElementById('bounce-sound').play();
+      // document.getElementById('bounce-sound').play();
       var relativeIntersectY = (paddle1.y + (paddle1.height/2)) - this.y;
       var normalizedRelativeIntersectionY = (relativeIntersectY/(paddle1.height/2));
       var bounceAngle = normalizedRelativeIntersectionY * 3*Math.PI/12;
@@ -57,7 +57,7 @@
 
     } else if (left_x < (paddle2.x + paddle2.width) && right_x > paddle2.x && bottom_y > paddle2.y && top_y < (paddle2.y + paddle2.height)){
       // hit player2's paddle
-      document.getElementById('bounce-sound').play();
+      // document.getElementById('bounce-sound').play();
       var relativeIntersectY = (paddle2.y + (paddle2.height/2)) - this.y;
       var normalizedRelativeIntersectionY = (relativeIntersectY/(paddle2.height/2));
       var bounceAngle = normalizedRelativeIntersectionY * 3*Math.PI/12;
