@@ -69,22 +69,23 @@
   Game.prototype.dottedLine = function(){
     this.context.beginPath();
       this.context.setLineDash([5, 15]);
+      this.context.lineWidth = 8;
       this.context.moveTo(450, 0);
       this.context.lineTo(450, 600);
     this.context.closePath();
-    this.context.strokeStyle = '#fff';
+    this.context.strokeStyle = '#d3d3d3';
     this.context.stroke();
   };
 
   Game.prototype.score = function(){
     this.context.font = '90px Audiowide';
-    this.context.fillStyle = "#fff"
+    this.context.fillStyle = "#000"
     this.context.fillText(this.leftScore, 320, 90);
     this.context.fillText(this.rightScore, 490, 90);
   }
 
   Game.prototype.render = function() {
-    this.context.fillStyle = "#000000";
+    this.context.fillStyle = "#ffffff";
     this.context.fillRect(0, 0, this.width, this.height);
     this.dottedLine();
     this.score();
