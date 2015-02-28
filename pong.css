@@ -5,7 +5,21 @@ body{
   overflow: hidden;
   font-family: 'Audiowide', cursive;
   color: white;
+  background: black;
 }
+
+/*body::after {
+  content: "";
+  background: url('matrix.gif');
+  background-repeat: repeat-x;
+  opacity: 0.8;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+}*/
 
 canvas{
   margin-left: auto;
@@ -14,6 +28,11 @@ canvas{
   position: relative;
 }
 
+.header{
+  font-family: 'Audiowide', cursive;
+  text-align: center;
+  font-size: 90px;
+}
 
 .end-info{
   z-index: 10;
@@ -30,4 +49,5 @@ canvas{
 .retry{
   margin-top: 102px;
   font-size: 60px;
+  color: black;
 }

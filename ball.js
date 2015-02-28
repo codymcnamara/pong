@@ -16,7 +16,7 @@
   Ball.prototype.render = function() {
     this.context.beginPath();
     this.context.arc(this.x, this.y, this.radius, 2 * Math.PI, false);
-    this.context.fillStyle = "#FFF";
+    this.context.fillStyle = "#000";
     this.context.fill();
   };
 
