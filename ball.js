@@ -38,6 +38,7 @@
     }
 
     if(this.x < 0 || this.x > 900) { // a point was scored
+      // document.getElementById('yourAudioTag').play();
       this.x < 0 ? this.game.rightScore += 1 : this.game.leftScore += 1;
       this.y_speed = -this.y_speed;
       this.x_speed = -this.x_speed;

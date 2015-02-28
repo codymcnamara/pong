@@ -6,4 +6,9 @@ By Cody McNamara and Dana Yakoobinsky
 <br>
 
 ####Instructions:
-Use the Up and Down arrows to move your paddle
+1. Use the Up and Down arrows to move your paddle
+2. Enjoy!
+
+![our-pic]
+
+[our-pic]: cody_and_dana.jpg

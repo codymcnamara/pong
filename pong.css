@@ -7,19 +7,6 @@ body{
   background: black;
 }
 
-/*body::after {
-  content: "";
-  background: url('matrix.gif');
-  background-repeat: repeat-x;
-  opacity: 0.8;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  position: absolute;
-  z-index: -1;
-}*/
-
 canvas{
   margin-left: auto;
   margin-right: auto;
