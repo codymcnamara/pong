@@ -50,4 +50,5 @@ canvas{
   margin-top: 102px;
   font-size: 60px;
   color: black;
+  cursor: pointer;
 }
