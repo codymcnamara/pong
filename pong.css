@@ -3,11 +3,21 @@ body{
   height: 100vh;
   position: relative;
   overflow: hidden;
+  font-family: 'Audiowide', cursive;
+  color: white;
 }
 
 canvas{
   margin-left: auto;
   margin-right: auto;
   display: block;
-  font-family: 'Audiowide', cursive;
+  position: relative;
+}
+
+.game-over{
+  margin-top: -456px;
+  z-index: 10;
+  text-align: center;
+  position: relative;
+  font-size: 90px;
 }

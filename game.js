@@ -28,7 +28,25 @@
   Game.prototype.step = function() {
     this.update();
     this.render();
-    animate(this.step.bind(this));
+    if (this.leftScore === 10 || this.rightScore === 10){
+      this.renderGameOver()
+    } else {
+      animate(this.step.bind(this));
+    }
+  };
+
+  Game.prototype.renderGameOver = function () {
+    if (this.leftScore === 10) {
+      var message = "Sorry, you lose"
+    } else if (this.rightScore === 10){
+      var message = "You Win!"
+    }
+
+    $('.game-over').html(message)
+    //
+    // this.context.font = '120px Audiowide';
+    // this.context.fillStyle = "#fff"
+    // this.context.fillText(message, 250, 250);
   };
 
   Game.prototype.update = function() {
@@ -50,8 +68,8 @@
   Game.prototype.score = function(){
     this.context.font = '90px Audiowide';
     this.context.fillStyle = "#fff"
-    this.context.fillText(this.rightScore, 320, 90);
-    this.context.fillText(this.leftScore, 490, 90);
+    this.context.fillText(this.leftScore, 320, 90);
+    this.context.fillText(this.rightScore, 490, 90);
   }
 
   Game.prototype.render = function() {
