@@ -25,30 +25,34 @@
     <script src="player.js"></script>
     <script src="computer.js"></script>
     <script src="paddle.js"></script>
+
+    <div class="new-game">
+    </div>
+
+    <div class="end-info game-over">
+
+    </div>
+
+    <div class="end-info retry">
+    </div>
+
     <script type="application/javascript">
-    (function(){
-      window.addEventListener("keydown", function(e) {
-        // space and arrow keys
-        if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-            e.preventDefault();
-        }
-      }, false);
-      var canvas = document.getElementsByTagName('canvas')[0];
-      var width = 900;
-      var height = 600;
-      canvas.width = width;
-      canvas.height = height;
-      var context = canvas.getContext('2d');
-      var game = new Pong.Game(context, width, height);
-      game.start();
-    })();
-  </script>
-  <div class="end-info game-over">
-
-  </div>
-
-  <div class="end-info retry">
-
-  </div>
+      (function(){
+        window.addEventListener("keydown", function(e) {
+          // space and arrow keys
+          if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+              e.preventDefault();
+          }
+        }, false);
+        var canvas = document.getElementsByTagName('canvas')[0];
+        var width = 900;
+        var height = 600;
+        canvas.width = width;
+        canvas.height = height;
+        var context = canvas.getContext('2d');
+        var game = new Pong.Game(context, width, height);
+        game.renderGameStart();
+      })();
+    </script>
   </body>
 </html>
