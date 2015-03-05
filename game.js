@@ -22,6 +22,8 @@
 
 
   Game.prototype.start = function(){
+    $(".new-game").html("");
+    $(".new-game").css("padding", 0);
     this.requestId = animate(this.step.bind(this));
   };
 
@@ -33,6 +35,14 @@
     } else {
       animate(this.step.bind(this));
     }
+  };
+
+
+  Game.prototype.renderGameStart = function () {
+    // this.render();
+    $('.new-game').html("Welcome to Pong! <br> Press up and down arrows to move your paddle (on the right). <br><br> Click here to start!");
+
+    $('.new-game').on('click', this.start.bind(this))
   };
 
   Game.prototype.renderGameOver = function () {
