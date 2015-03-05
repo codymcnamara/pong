@@ -1,5 +1,5 @@
 #Pong
-Play the classic Atari Pong game!
+The classic Atari Pong game! [Click here](http://codymcnamara.github.io/pong/)  to play.
 
 By Cody McNamara and Dana Yakoobinsky
 
