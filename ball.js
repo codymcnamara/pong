@@ -48,7 +48,7 @@
 
     if(left_x < (paddle1.x + paddle1.width) && right_x > paddle1.x && bottom_y > paddle1.y && top_y < (paddle1.y + paddle1.height)){
       // hit player1's paddle
-      // document.getElementById('bounce-sound').play();
+      document.getElementById('bounce-sound').play();
       var relativeIntersectY = (paddle1.y + (paddle1.height/2)) - this.y;
       var normalizedRelativeIntersectionY = (relativeIntersectY/(paddle1.height/2));
       var bounceAngle = normalizedRelativeIntersectionY * 3*Math.PI/12;
