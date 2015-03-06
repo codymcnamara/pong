@@ -44,7 +44,7 @@
 
   Game.prototype.renderGameStart = function () {
     // this.render();
-    $('.new-game').html("Welcome to Pong! <br> Press up and down arrows to move your paddle (on the right). <br><br> <div class='one-player'> One Player</div><div class='two-player'>Two Player</div>");
+    $('.new-game').html("Welcome to Pong! <br><br> Press up and down arrows to move your paddle (on the right). <br> For two player, left paddle moves with 's' and 'w' keys <br><br> <div class='one-player'> One Player</div><div class='two-player'>Two Player</div>");
 
     $('.one-player').on('click', this.start.bind(this, 1))
     $('.two-player').on('click', this.start.bind(this, 2))
