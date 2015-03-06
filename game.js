@@ -8,8 +8,6 @@
     this.width = width;
     this.height = height;
     this.context = context;
-    this.player = new Pong.Player(context);
-    this.computer = new Pong.Computer(context);
     this.ball = new Pong.Ball(450, 300, context, this);
     this.rightScore = 0;
     this.leftScore = 0;
@@ -21,9 +19,15 @@
     function(callback) { window.setTimeout(callback, 1000/60) };
 
 
-  Game.prototype.start = function(){
+  Game.prototype.start = function(num_players){
     $(".new-game").html("");
     $(".new-game").css("padding", 0);
+    this.player1 = new Pong.Player(this.context, 'R');
+    if(num_players === 1){
+      this.player2 = new Pong.Computer(this.context);
+    }else if(num_players === 2){
+      this.player2 = new Pong.Player(this.context, 'L');
+    }
     this.requestId = animate(this.step.bind(this));
   };
 
@@ -40,9 +44,10 @@
 
   Game.prototype.renderGameStart = function () {
     // this.render();
-    $('.new-game').html("Welcome to Pong! <br> Press up and down arrows to move your paddle (on the right). <br><br> Click here to start!");
+    $('.new-game').html("Welcome to Pong! <br> Press up and down arrows to move your paddle (on the right). <br><br> <div class='one-player'> One Player</div><div class='two-player'>Two Player</div>");
 
-    $('.new-game').on('click', this.start.bind(this))
+    $('.one-player').on('click', this.start.bind(this, 1))
+    $('.two-player').on('click', this.start.bind(this, 2))
   };
 
   Game.prototype.renderGameOver = function () {
@@ -64,17 +69,17 @@
     this.context.clearRect (0, 0, this.width, this.height);
     this.rightScore = 0;
     this.leftScore = 0;
-    this.player.reset();
-    this.computer.reset();
+    this.player1.reset();
+    this.player2.reset();
     $('.end-info').html('');
     window.cancelAnimationFrame(this.requestId);
     this.start();
   }
 
   Game.prototype.update = function() {
-    this.ball.update(this.player.paddle, this.computer.paddle);
-    this.computer.update(this.ball);
-    this.player.update();
+    this.ball.update(this.player1.paddle, this.player2.paddle);
+    this.player2.update(this.ball);
+    this.player1.update();
   };
 
   Game.prototype.dottedLine = function(){
@@ -100,8 +105,8 @@
     this.context.fillRect(0, 0, this.width, this.height);
     this.dottedLine();
     this.score();
-    this.player.render();
-    this.computer.render();
+    this.player1.render();
+    this.player2.render();
     this.ball.render();
   };
 
