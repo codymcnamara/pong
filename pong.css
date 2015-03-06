@@ -30,7 +30,7 @@ canvas{
 }
 
 .new-game{
-  margin-top: -440px;
+  margin-top: -600px;
   font-size: 32px;
   cursor: pointer;
   background-color: #33FF99;
@@ -43,6 +43,11 @@ canvas{
   padding: 20px;
 }
 
+.one-player, .two-player{
+  font-size: 46px;
+  border: solid 3px white;
+  margin: 6px;
+}
 .game-over{
   margin-top: -456px;
   font-size: 90px;
